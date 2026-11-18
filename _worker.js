@@ -86,6 +86,11 @@ export default {
 	 */
 	async fetch(request, env, ctx) {
 		try {
+					const url = new URL(request.url);
+		if (!url.hostname.endsWith('zhengchao666888.ccwu.cc')) {
+			return new Response('Access Denied', { status: 403 });
+		}
+
 			const UA = request.headers.get('User-Agent') || 'null';
 			const userAgent = UA.toLowerCase();
 			userID = (env.UUID || userID).toLowerCase();
